@@ -1,14 +1,37 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text, StyleSheet, View, FlatList} from 'react-native';
+import SearchBar from "../components/SearchBar";
+import yelp from '../api/yelp'
+import useGetProducts from "../hooks/useGetProducts";
+import {Image} from "react-native-web";
 
-const SearchScreen = () => {
-    return <Text style={styles.text}>SEARCH </Text>;
+export default function SearchScreen() {
+    const [searchText, setSearchText] = useState('')
+    const {result} = useGetProducts({searchText})
+
+    return (
+        <View>
+            <View style={styles.searchBar} ><SearchBar value={searchText} setValue={setSearchText} /></View>
+            <FlatList
+                style={styles.body}
+                data={result}
+                renderItem={({item}) => (
+                    <View>
+                        <Text>{item.name}</Text>
+                    </View>
+                )}
+                keyExtractor={item => item.id}
+            />
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
-    text: {
-        fontSize: 40,
+    searchBar: {
+        paddingVertical: 15,
+        backgroundColor: '#CAE9D7'
     },
-});
-
-export default SearchScreen;
+    body: {
+        marginTop: 50
+    }
+})
