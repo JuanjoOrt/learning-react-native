@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet, View, FlatList} from 'react-native';
+import {Text, StyleSheet, View, FlatList, Image} from 'react-native';
 import SearchBar from "../components/SearchBar";
-import yelp from '../api/yelp'
 import useGetProducts from "../hooks/useGetProducts";
-import {Image} from "react-native-web";
 
 export default function SearchScreen() {
     const [searchText, setSearchText] = useState('')
@@ -16,8 +14,12 @@ export default function SearchScreen() {
                 style={styles.body}
                 data={result}
                 renderItem={({item}) => (
-                    <View>
-                        <Text>{item.name}</Text>
+                    <View style={styles.itemContainer}>
+                        <View style={styles.imageCointainer}>
+                            <Image style={styles.image} source={{uri: item.image}}/>
+                        </View>
+                        <Text style={styles.imageTitle}>{item.name}</Text>
+                        <Text style={styles.imagePrice}>{item.price} €</Text>
                     </View>
                 )}
                 keyExtractor={item => item.id}
@@ -32,6 +34,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#CAE9D7'
     },
     body: {
-        marginTop: 50
+        marginTop: 5,
+        marginBottom: 100
+    },
+    itemContainer: {
+        marginVertical: 20,
+        width: '100%',
+        alignItems: 'center'
+    },
+    imageCointainer: {
+        width: '70%',
+        height: 350,
+        alignItems: "center"
+    },
+    image: {
+        width: '80%',
+        height: '100%',
+    },
+    imageTitle: {
+        marginTop: 10,
+        fontSize: 18,
+        textAlign: 'center'
+    },
+    imagePrice: {
+        marginTop: 5,
+        fontSize: 16,
+        fontWeight: 'bold'
     }
 })
