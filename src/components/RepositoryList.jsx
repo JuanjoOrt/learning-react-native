@@ -7,7 +7,8 @@ export default function RepositoryList () {
   return (
     <FlatList
       data={repositories}
-      renderItem={({item: repo, ...props}) => <RepositoryItem repo={repo} index={props.index}/>}
+      renderItem={({item: repo}) => <RepositoryItem repo={repo}/>}
+      keyExtractor={(item,) => item.id}
     />
   )
 }

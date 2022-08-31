@@ -2,17 +2,17 @@ import {Text, View, StyleSheet} from 'react-native';
 import React from 'react';
 import StyledText from './StyledText';
 
-export default function RepositoryItem ({ repo, index }) {
+export default function RepositoryItem ({ repo }) {
   return (
-    <View key={index} style={styles.container}>
-      <StyledText bold big blue>id: repo.id</StyledText>
+    <View style={styles.container}>
+      <StyledText fontSize='big' fontWeight='bold' color='blue'>id: {repo.id}</StyledText>
       <StyledText>fullname: {repo.fullName}</StyledText>
       <StyledText>description: {repo.description}</StyledText>
       <StyledText>language: {repo.language}</StyledText>
-      <StyledText small>stars: {repo.stargazersCount}</StyledText>
-      <StyledText small>forks: {repo.forkCount}</StyledText>
-      <StyledText small>reviewCount: {repo.reviewCount}</StyledText>
-      <StyledText small>rating: {repo.ratingAverage}</StyledText>
+      <StyledText fontSize='small'>stars: {repo.stargazersCount}</StyledText>
+      <StyledText fontSize='small'>forks: {repo.forkCount}</StyledText>
+      <StyledText fontSize='small'>reviewCount: {repo.reviewCount}</StyledText>
+      <StyledText fontSize='small'>rating: {repo.ratingAverage}</StyledText>
     </View>
   )
 }
