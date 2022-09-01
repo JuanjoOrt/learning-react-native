@@ -1,11 +1,17 @@
 import React from 'react'
-import {ViewPropTypes, StyleSheet, View, Text, ScrollView} from 'react-native';
+import {ViewPropTypes, StyleSheet, View, Text, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import StyledText from './StyledText';
 import Constants from 'expo-constants';
 import theme from '../theme'
+import { useNavigation } from '@react-navigation/native';
 
-function ItemBar ({children}) {
-  return <StyledText fontWeight='bold' style={styles.text}>{children}</StyledText>
+function ItemBar ({children, to = 'Home'}) {
+  const navigation = useNavigation();
+  return (
+      <TouchableWithoutFeedback onPress={() => navigation.navigate(to)}>
+        <View><StyledText fontWeight='bold' style={styles.text}>{children}</StyledText></View>
+      </TouchableWithoutFeedback>
+  )
 }
 
 export default function AppBar () {
@@ -13,10 +19,11 @@ export default function AppBar () {
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scroll}>
         <ItemBar>Repositories</ItemBar>
-        <ItemBar>Cosas</ItemBar>
         <ItemBar>Pruebas</ItemBar>
         <ItemBar>De Tabs</ItemBar>
         <ItemBar>Juanjo</ItemBar>
+        <ItemBar to='Testing'>Testing</ItemBar>
+        <ItemBar>Navbar</ItemBar>
       </ScrollView>
     </View>
   )
