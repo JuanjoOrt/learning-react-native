@@ -3,14 +3,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import RepositoryList from './RepositoryList';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Text} from 'react-native';
+import TestingPage from './TestingPage';
+import Layout from './Layout';
 
 const Stack = createNativeStackNavigator();
-
-const Testing = () => <Text>Testing</Text>
 
 export default function Main () {
   return (
     <NavigationContainer >
+      <Layout>
         <Stack.Navigator
           initialRouteName="Home"
           screenOptions={{
@@ -18,8 +19,9 @@ export default function Main () {
           }}
         >
           <Stack.Screen name="Home" component={RepositoryList} />
-          <Stack.Screen name="Testing" component={Testing} />
+          <Stack.Screen name="Testing" component={TestingPage} />
         </Stack.Navigator>
+      </Layout>
     </NavigationContainer>
   )
 }
