@@ -1,18 +1,15 @@
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import StyledText from './StyledText';
+import theme from '../theme'
+import RepositoryStars from './RepositoryStars';
+import RepositoryHeader from './RepositoryHeader';
 
 export default function RepositoryItem ({ repo }) {
   return (
     <View style={styles.container}>
-      <StyledText fontSize='big' fontWeight='bold' color='blue'>id: {repo.id}</StyledText>
-      <StyledText>fullname: {repo.fullName}</StyledText>
-      <StyledText>description: {repo.description}</StyledText>
-      <StyledText>language: {repo.language}</StyledText>
-      <StyledText fontSize='small'>stars: {repo.stargazersCount}</StyledText>
-      <StyledText fontSize='small'>forks: {repo.forkCount}</StyledText>
-      <StyledText fontSize='small'>reviewCount: {repo.reviewCount}</StyledText>
-      <StyledText fontSize='small'>rating: {repo.ratingAverage}</StyledText>
+      <RepositoryHeader {...repo}/>
+      <RepositoryStars {...repo}/>
     </View>
   )
 }
@@ -21,7 +18,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     paddingBottom: 5,
-    paddingTop: 5
-  },
+    paddingTop: 20,
+  }
 })
-

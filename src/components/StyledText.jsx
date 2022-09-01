@@ -7,9 +7,10 @@ export default function StyledText ({ color, fontWeight, fontSize, children, ...
     styles.text,
     color === 'primary' && styles.colorPrimary,
     color === 'secondary' && styles.colorSecondary,
+    color === 'white' && styles.colorWhite,
     fontWeight === 'bold' && styles.bold,
     fontSize === 'big' && styles.big,
-    fontSize === 'small' && styles.small
+    fontSize === 'small' && styles.small,
   ]
 
   return (
@@ -28,10 +29,13 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeight.bold
   },
   colorPrimary: {
-    color: theme.colors.primary
+    color: theme.colors.primary,
   },
   colorSecondary: {
     color: theme.colors.textSecondary
+  },
+  colorWhite: {
+    color: theme.colors.textWhite
   },
   big: {
     fontSize: theme.fontSizes.big

@@ -1,5 +1,6 @@
 export default {
   colors: {
+    textWhite: '#fff',
     textPrimary: '#24292e',
     textSecondary: '#576069',
     primary: '#0366d6',
@@ -15,5 +16,9 @@ export default {
   fontWeight: {
     normal: '400',
     bold: '700'
+  },
+  appBar: {
+    primary: '#24292e',
+    textPrimary: '#fff'
   }
 }
