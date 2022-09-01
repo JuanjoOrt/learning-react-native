@@ -3,13 +3,20 @@ import {ViewPropTypes, StyleSheet, View, Text, ScrollView, TouchableWithoutFeedb
 import StyledText from './StyledText';
 import Constants from 'expo-constants';
 import theme from '../theme'
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
-function ItemBar ({children, to = 'Home'}) {
+function ItemBar ({children, to }) {
   const navigation = useNavigation();
+  const route = useRoute()
+
+  const textStyles = [
+    styles.text,
+    route.name === to && styles.active,
+  ]
+
   return (
-      <TouchableWithoutFeedback onPress={() => navigation.navigate(to)}>
-        <View><StyledText fontWeight='bold' style={styles.text}>{children}</StyledText></View>
+      <TouchableWithoutFeedback onPress={() => to && navigation.navigate(to)}>
+        <View><StyledText fontWeight='bold' style={textStyles}>{children}</StyledText></View>
       </TouchableWithoutFeedback>
   )
 }
@@ -18,7 +25,7 @@ export default function AppBar () {
   return (
     <View style={styles.container}>
       <ScrollView horizontal style={styles.scroll}>
-        <ItemBar>Repositories</ItemBar>
+        <ItemBar to='Home'>Repositories</ItemBar>
         <ItemBar>Pruebas</ItemBar>
         <ItemBar>De Tabs</ItemBar>
         <ItemBar>Juanjo</ItemBar>
@@ -36,10 +43,13 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   text: {
-    color: theme.colors.textWhite,
+    color: '#a9a9a9',
     paddingHorizontal: 10
   },
   scroll: {
     paddingBottom: 10
+  },
+  active: {
+    color: theme.colors.textWhite,
   }
 })
