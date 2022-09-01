@@ -6,10 +6,12 @@ import Layout from './Layout';
 
 export default function RepositoryList () {
   return (
+    <Layout>
       <FlatList
         data={repositories}
         renderItem={({item: repo}) => <RepositoryItem repo={repo}/>}
         keyExtractor={(item,) => item.id}
       />
+    </Layout>
   )
 }

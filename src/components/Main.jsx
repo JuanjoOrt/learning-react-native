@@ -11,17 +11,15 @@ const Stack = createNativeStackNavigator();
 export default function Main () {
   return (
     <NavigationContainer >
-      <Layout>
         <Stack.Navigator
           initialRouteName="Home"
           screenOptions={{
             headerShown: false,
-          }}
-        >
+            animation: 'none',
+          }}>
           <Stack.Screen name="Home" component={RepositoryList} />
           <Stack.Screen name="Testing" component={TestingPage} />
         </Stack.Navigator>
-      </Layout>
     </NavigationContainer>
   )
 }
