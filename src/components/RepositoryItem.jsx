@@ -1,23 +1,24 @@
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
-import StyledText from './StyledText';
-import theme from '../theme'
 import RepositoryStars from './RepositoryStars';
 import RepositoryHeader from './RepositoryHeader';
 
 export default function RepositoryItem ({ repo }) {
   return (
-    <View style={styles.container}>
-      <RepositoryHeader {...repo}/>
-      <RepositoryStars {...repo}/>
+    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+      <View style={styles.container}>
+        <RepositoryHeader {...repo}/>
+        <RepositoryStars {...repo}/>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     paddingBottom: 5,
     paddingTop: 20,
+    width: Dimensions.get('window').width >= 400 ? 400 : '90%',
+    marginHorizontal: 20
   }
 })

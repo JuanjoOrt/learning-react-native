@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {FlatList, Text, View} from 'react-native'
+import {FlatList, Text, View, StyleSheet, Dimensions} from 'react-native'
 import RepositoryItem from './RepositoryItem';
 import Layout from './Layout';
 
@@ -13,7 +13,10 @@ export default function RepositoryList () {
   }, [])
 
   return (
-    <Layout>
+    <Layout style={styles.container}>
+      <View>
+
+      </View>
       <FlatList
         data={data}
         renderItem={({item: repo}) => <RepositoryItem repo={repo}/>}
@@ -22,3 +25,10 @@ export default function RepositoryList () {
     </Layout>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
+})
