@@ -1,14 +1,21 @@
-import React from 'react'
-import repositories from '../_data/repositories'
+import React, {useEffect, useState} from 'react'
 import {FlatList, Text, View} from 'react-native'
 import RepositoryItem from './RepositoryItem';
 import Layout from './Layout';
 
 export default function RepositoryList () {
+  const [ data, setData ] = useState([])
+
+  useEffect(() => {
+    fetch('https://x8ki-letl-twmt.n7.xano.io/api:tPom_P5B/repositories')
+      .then(response => response.json())
+      .then(response => setData(response))
+  }, [])
+
   return (
     <Layout>
       <FlatList
-        data={repositories}
+        data={data}
         renderItem={({item: repo}) => <RepositoryItem repo={repo}/>}
         keyExtractor={(item,) => item.id}
       />
